@@ -22,7 +22,7 @@
     {% endif %}
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-exchange"></i> {{ heading_title }}</h3>
+        <h3 class="panel-title"><i class="fa fa-balance-scale"></i> {{ heading_title }}</h3>
       </div>
       <div class="panel-body">
         <ul class="nav nav-tabs">
@@ -78,22 +78,22 @@
   <script type="text/javascript"><!--
 $('#button-import').on('click', function() {
 	$('#form-upload').remove();
-	
+
 	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="import" /></form>');
-	
+
 	$('#form-upload input[name=\'import\']').trigger('click');
-	
+
 	if (typeof timer != 'undefined') {
 		clearInterval(timer);
 	}
-	
+
 	timer = setInterval(function() {
 		if ($('#form-upload input[name=\'import\']').val() != '') {
 			clearInterval(timer);
-	
+
 			$('#progress-import .progress-bar').attr('aria-valuenow', 0);
 			$('#progress-import .progress-bar').css('width', '0%');
-	
+
 			$.ajax({
 				url: 'index.php?route=tool/backup/import&user_token={{ user_token }}',
 				type: 'post',
@@ -110,20 +110,20 @@ $('#button-import').on('click', function() {
 				},
 				success: function(json) {
 					$('.alert-dismissible').remove();
-					
+
 					if (json['error']) {
 						$('#content > .container-fluid').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 					}
-					
+
 					if (json['success']) {
 						$('#content > .container-fluid').prepend('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 					}
-					
+
 					if (json['total']) {
 						$('#progress-import .progress-bar').attr('aria-valuenow', json['total']);
 						$('#progress-import .progress-bar').css('width', json['total'] + '%');
 					}
-					
+
 					if (json['next']) {
 						next(json['next']);
 					}
@@ -142,20 +142,20 @@ function next(url) {
 		dataType: 'json',
 		success: function(json) {
 			$('.alert-dismissible').remove();
-			
+
 			if (json['error']) {
 				$('#content > .container-fluid').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 			}
-			
+
 			if (json['success']) {
 				$('#content > .container-fluid').prepend('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 			}
-			
+
 			if (json['total']) {
 				$('#progress-import .progress-bar').attr('aria-valuenow', json['total']);
 				$('#progress-import .progress-bar').css('width', json['total'] + '%');
 			}
-			
+
 			if (json['next']) {
 				next(json['next']);
 			}
@@ -165,6 +165,6 @@ function next(url) {
 		}
 	});
 }
-  //--></script> 
+  //--></script>
 </div>
-{{ footer }} 
+{{ footer }}
