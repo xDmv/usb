@@ -12,6 +12,90 @@ class ControllerExtensionMarkups extends Controller {
 	public function index() {
 		$this->load->language('extension/mark_ups');
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->load->model('extension/mark_ups');
+		$this->getForm();
+	}
+
+protected function getForm() {
+	$data = array();
+	$data['user_token'] = $this->session->data['user_token'];
+	$data['heading_title']  	= $this->language->get('heading_title');
+	$data['text_edit'] 				= $this->language->get('text_edit');
+	$data['text_enabled'] 		= $this->language->get('text_enabled');
+	$data['text_disabled'] 		= $this->language->get('text_disabled');
+	$data['table_image'] 			= $this->language->get('table_image');
+	$data['table_name'] 			= $this->language->get('table_name');
+	$data['table_text'] 			= $this->language->get('table_text');
+	$data['button_save'] 			= $this->language->get('button_save');
+	$data['button_cancel'] 		= $this->language->get('button_cancel');
+
+	$data['table_header'] 		= $this->language->get('table_header');
+	$data['table_edit'] 			= $this->language->get('table_edit');
+	$data['table_delete'] 		= $this->language->get('table_delete');
+	$data['table_id'] 				= $this->language->get('table_id');
+	//$data['token'] 						= $this->session->data['token'];
+	$data['title_add'] 				= $this->language->get('title_add');
+
+	$data['table_header'] 		= $this->language->get( 'table_header' );
+	$data['table_id'] 				= $this->language->get( 'table_id' );
+	$data['table_name'] 			= $this->language->get( 'table_name' );
+	$data['table_procent'] 		= $this->language->get( 'table_procent' );
+	$data['table_cheslo'] 		= $this->language->get( 'table_cheslo' );
+	$data['table_del'] 				= $this->language->get( 'table_del' );
+	$data['table_up'] 				= $this->language->get( 'table_up' );
+	$data['table_prin'] 			= $this->language->get( 'table_prin' );
+
+	$data['tab_manufacture'] 	= $this->language->get( 'tab_manufacture' );
+	$data['tab_category'] 		= $this->language->get( 'tab_category' );
+
+	$data['button_prim'] 			= $this->language->get( 'button_prim' );
+	$data['button_del'] 			= $this->language->get( 'button_del' );
+	$data['button_red'] 			= $this->language->get( 'button_red' );
+
+	$data['text_etap0'] 			= $this->language->get( 'text_etap0' );
+	$data['text_etap1m'] 			= $this->language->get( 'text_etap1m' );
+	$data['text_etap1c'] 			= $this->language->get( 'text_etap1c' );
+	$data['text_etap2'] 			= $this->language->get( 'text_etap2' );
+	$data['text_etap3'] 			= $this->language->get( 'text_etap3' );
+	$data['text_cheslo'] 			= $this->language->get( 'text_cheslo' );
+	$data['text_procent'] 		= $this->language->get( 'text_procent' );
+	$data['text_procent'] 		= $this->language->get( 'text_procent' );
+	$data['text_no_data'] 		= $this->language->get( 'text_no_data' );
+	$data['del_help'] 				= $this->language->get('del_help');
+
+	$data['$m_del'] 						= array();
+	$data['$temp_m'] 						= array();
+	$data['$c_del'] 						= array();
+	$data['$temp_c'] 						= array();
+	$data['$table_m'] 					= array();
+	$data['$table_c'] 					= array();
+	$data['$manufacture_name'] 	= array();
+	$data['$category_name'] 		= array();
+
+	$data['breadcrumbs'] = array();
+	$data['breadcrumbs'][] = array(
+		'text' => $this->language->get('text_home'),
+		'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], $this->ssl)
+	);
+	$data['breadcrumbs'][] = array(
+		'text' => $this->language->get('heading_title'),
+		'href' => $this->url->link('extension/mark_ups', 'user_token=' . $this->session->data['user_token'], $this->ssl)
+	);
+	$data['back'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], $this->ssl);
+	$data['button_back'] = $this->language->get( 'button_back' );
+
+	$data['header'] = $this->load->controller('common/header');
+	$data['column_left'] = $this->load->controller('common/column_left');
+	$data['footer'] = $this->load->controller('common/footer');
+
+	$this->response->setOutput($this->load->view( 'extension/mark_ups', $data));
+	print_r("print");
+	exit;
+}
+/*
+	public function index() {
+		$this->load->language('extension/mark_ups');
+		$this->document->setTitle($this->language->get('heading_title'));
 		// регистрируем модуль
 		$this->load->model('setting/setting');
 		$data['ok'] = 1;
@@ -133,7 +217,7 @@ exit;
 
 		return !$this->error;
 	}
-
+*/
 	public function deleteManufacture(){
 		// получаем значения
 		$text = ($this->request->post['id_m']) ? $this->request->post['id_m'] : 0;
