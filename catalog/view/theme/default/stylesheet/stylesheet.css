@@ -744,3 +744,34 @@ h2.price {
     background-image: none;
     background-color: #df5c39;
 }
+/* account page */
+#my_account > li {
+vertical-align: top;
+display: inline-block;
+border: 1px solid #ddd;
+padding: 10px;
+margin: 5px;
+border-radius: 3px;
+width: 120px;
+min-height: 115px;
+text-align: center;
+}
+#my_account > li:hover {
+border: 1px solid #337AB7;
+}
+#my_account > li a {
+color: #5d5d5d;
+}
+#my_account > li:hover > a, #my_account > li:hover .fa {
+color: #337AB7;
+}
+#my_account .fa {
+font-size: 50px;
+color: #5d5d5d;
+display: block;
+text-align: center;
+}
+h2 .fa {
+font-size: 26px;
+padding-left: 8px;
+}
