@@ -758,6 +758,7 @@ text-align: center;
 }
 #my_account > li:hover {
 border: 1px solid #00BFFF;
+
 }
 #my_account > li a {
 color: #5d5d5d;
