@@ -757,7 +757,7 @@ min-height: 115px;
 text-align: center;
 }
 #my_account > li:hover {
-border: 1px solid #00BFFF;
+border: 1px solid #32CD32;
 
 }
 #my_account > li a {
@@ -772,6 +772,7 @@ color: #5d5d5d;
 display: block;
 text-align: center;
 }
+
 h2 .fa {
 font-size: 26px;
 padding-left: 8px;
